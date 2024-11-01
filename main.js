@@ -155,7 +155,6 @@ function send2wavelog(o_cfg,adif, dryrun = false) {
 	clpayload.string=adif;
 	// console.log(clpayload);
 	postData=JSON.stringify(clpayload);
-	const https = require('https');
 	var options = {
 		method: 'POST',
 		timeout: 5000,
@@ -172,7 +171,7 @@ function send2wavelog(o_cfg,adif, dryrun = false) {
 		let result={};
 		let url=o_cfg.wavelog_url + '/api/qso';
 		if (dryrun) { url+='/true'; }
-		const req = https.request(url,options, (res) => {
+		const req = http.request(url,options, (res) => {
 
 			result.statusCode=res.statusCode;
 			if (res.statusCode < 200 || res.statusCode > 299) {
